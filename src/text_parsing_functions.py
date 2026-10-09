@@ -53,7 +53,8 @@ def lowercase_text(text):
     >>> lowercase_text('AbC')
     'abc'
     """
-    pass
+    text_lowercased = text.lower()
+    return text_lowercased
 
 
 def remove_punctuation(text, punctuation=punctuation):
@@ -81,8 +82,10 @@ def remove_punctuation(text, punctuation=punctuation):
     """
     # TODO: Your code here
     # Hint: Loop through each punctuation character and replace it
-    pass
-
+    for character in text:
+        if character in punctuation:
+            text = text.replace(character, "")
+    return text
 
 def remove_newline(text):
     """
@@ -105,7 +108,8 @@ def remove_newline(text):
     'life happens when youre busy making other plans'
     """
     # TODO: Your code here
-    pass
+    text = text.replace("\n", "").strip()
+    return text
 
 
 def split_text_into_words(text):
@@ -129,8 +133,8 @@ def split_text_into_words(text):
     ['get', 'started', 'by', 'stop', 'talking', 'and', 'begin', 'doing']
     """
     # TODO: Your code here
-    pass
-
+    word_list = text.split()
+    return word_list
 
 def remove_stopwords(word_lst, stopwords_set):
     """
@@ -156,7 +160,11 @@ def remove_stopwords(word_lst, stopwords_set):
     ['tell', 'me', 'forget']
     """
     # TODO: Your code here
-    pass
+    removed_stopwords_list = []
+    for word in word_lst:
+        if word not in stopwords_set:
+            removed_stopwords_list.append(word)
+    return removed_stopwords_list
 
 
 def replace_names(word_lst, name_set, replacement_val):
@@ -187,8 +195,14 @@ def replace_names(word_lst, name_set, replacement_val):
     # TODO: Your code here
     # Hint: Use a list comprehension with a conditional
     # If word is in name_set, use replacement_val, otherwise use word
-    pass
-
+    no_names_list = []
+    for word in word_lst:
+        if word in name_set:
+            no_names_list.append(replacement_val)
+        else:
+            no_names_list.append(word)
+    return no_names_list
+            
 
 def create_cleaned_textline_from_words(words):
     """
@@ -213,7 +227,8 @@ def create_cleaned_textline_from_words(words):
     """
     # TODO: Your code here
     # Hint: Use the .join() method
-    pass
+    cleaned_text = " ".join(words)
+    return cleaned_text
 
 
 def line_cleaning_pipeline(text, stopwords_set, name_set, replace_val):
